@@ -2,7 +2,7 @@ module LammTools
 #Copyright (c) 2021 Ryuichi Okamoto <ryubee@gmail.com>
 #License: https://opensource.org/licenses/MIT
 
-function ext_dump(file,datafile;Tstep=2000000)
+function ext_dump(file,datafile;Tstep=0)
     fn=open(file,"r")
     fn2=open(datafile,"r")
     fw=open("ex_$(Tstep).dump", "w")
@@ -126,7 +126,7 @@ function ext_dump(file,datafile;Tstep=2000000)
 end
 
 
-function ext_bonds(file;Tstep=30000)
+function ext_bonds(file;Tstep=0)
     fn=open(file,"r")
 
     line="initial"
