@@ -17,7 +17,7 @@ function ext_dump(file,datafile;Tstep=2000000)
     end
 
     println(fw2,lamver) #header of the data file
-
+    println(fw2,"")
 
 
     line=readline(fn)
@@ -50,27 +50,29 @@ function ext_dump(file,datafile;Tstep=2000000)
     println(fw,"ITEM: TIMESTEP")
     println(fw,Tstep)
 
+    line=readline(fn)
+    println(fw,line)
+    line=readline(fn)
+    println(fw,line)
+
+    println(fw2, line*" atoms")
 
     for _ in 1:3
         linedata=readline(fn2)
     end
 
-    
 
     s=split(linedata)
     Ntype=parse(Int,s[1])
-    #mass=Array{String}(undef,Ntype)
     
 
-    
     println(fw2,s[1]*" atom types")
     println(fw2,"")
 
+    
     line=readline(fn)
     println(fw,line)
-    line=readline(fn)
-    println(fw,line)
-
+    
     println(fw2, line*" xlo xhi")
 
     line=readline(fn)
