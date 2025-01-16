@@ -44,8 +44,10 @@ function ext_dump(file,datafile;Tstep=0)
             line=readline(fn)
         end
         line2=readline(fn)
-        println("timestep="*line2)
+        
     end
+
+    println("timestep="*line2*" read!")
 
     println(fw,"ITEM: TIMESTEP")
     println(fw,Tstep)
