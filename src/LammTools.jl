@@ -7,39 +7,6 @@ function ext_dump(file;Tstep=2000000,N=4152)
     fw=open("ex_$(Tstep).dump", "w")
     fw2=open("ex_$(Tstep).data","w")
 
-    println(fw2,"LAMMPS data file via write_data, version 30 Nov 2020, timestep = $(Tstep)")
-    println(fw2,"")
-    println(fw2,"$(N) atoms")
-    println(fw2,"13 atom types")
-    println(fw2,"")
-    println(fw2, "0 30.828 xlo xhi")
-    println(fw2, "0 47.82 ylo yhi")
-    println(fw2, "0 30.828 zlo zhi")
-    println(fw2,"")
-    println(fw2,"Masses")
-
-    println(fw2,"")
-    println(fw2,"1 12")
-    println(fw2,"2 1.008")
-    println(fw2,"3 1.008")
-    println(fw2,"4 16")
-    println(fw2,"5 16")
-    println(fw2,"6 88.90519999999999")
-    println(fw2,"7 91.224")
-    println(fw2,"8 1.008")
-    println(fw2,"9 16")
-    println(fw2,"10 12")
-    println(fw2,"11 1.008")
-    println(fw2,"12 16")
-    println(fw2,"13 1.008")
-
-    println(fw2,"")
-
-    println(fw2,"Atoms # charge")
-
-    println(fw2,"")
-
-
     
 
 
@@ -74,6 +41,47 @@ function ext_dump(file;Tstep=2000000,N=4152)
 
     println(fw,"ITEM: TIMESTEP")
     println(fw,Tstep)
+
+
+
+    println(fw2,"LAMMPS data file via write_data, version 30 Nov 2020, timestep = $(Tstep)")
+    println(fw2,"")
+
+    line=readline(fn)
+    println(fw,line)
+    line=readline(fn)
+    println(fw,line)
+
+    println(fw2,line*" atoms")
+    println(fw2,"13 atom types")
+    println(fw2,"")
+    println(fw2, "0 30.828 xlo xhi")
+    println(fw2, "0 47.82 ylo yhi")
+    println(fw2, "0 30.828 zlo zhi")
+    println(fw2,"")
+    println(fw2,"Masses")
+
+    println(fw2,"")
+
+    println(fw2,"1 12")
+    println(fw2,"2 1.008")
+    println(fw2,"3 1.008")
+    println(fw2,"4 16")
+    println(fw2,"5 16")
+    println(fw2,"6 88.90519999999999")
+    println(fw2,"7 91.224")
+    println(fw2,"8 1.008")
+    println(fw2,"9 16")
+    println(fw2,"10 12")
+    println(fw2,"11 1.008")
+    println(fw2,"12 16")
+    println(fw2,"13 1.008")
+
+    println(fw2,"")
+
+    println(fw2,"Atoms # charge")
+
+    println(fw2,"")
 
     line=readline(fn)
     while line!="ITEM: TIMESTEP" && !eof(fn)
