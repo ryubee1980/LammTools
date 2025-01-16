@@ -48,7 +48,7 @@ function ext_dump(file;Tstep=2000000,N=4152)
     s=split(line)
     line2=readline(fn)
 
-    if line=="ITEM: TIMESTEP" && line2=="0"
+    if line=="ITEM: TIMESTEP"
         println(fw,line)
         println(fw, line2)
     end
@@ -58,13 +58,13 @@ function ext_dump(file;Tstep=2000000,N=4152)
         println(fw,line)
         line=readline(fn)
     end
-
+    
 #    while !(line=="ITEM: TIMESTEP" && readline(fn)==Tstep)
 #        line=readline(fn)
 #    end
-
-     while line2!="$Tstep"
-	line=readline(fn)
+    line2=readline(fn)
+    while line2!="$Tstep"
+	    line=readline(fn)
         while line!="ITEM: TIMESTEP"
             line=readline(fn)
         end
