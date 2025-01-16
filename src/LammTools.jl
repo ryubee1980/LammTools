@@ -8,7 +8,7 @@ function ext_dump(file,datafile;Tstep=2000000)
     fw=open("ex_$(Tstep).dump", "w")
     fw2=open("ex_$(Tstep).data","w")
 
-    linedata=readline(f2)
+    linedata=readline(fn2)
     s=split(linedata)
     s[end]="$(Tstep)"
     lamver=s[1]
