@@ -69,10 +69,11 @@ function ext_dump(file,datafile;Tstep=2000000)
     println(fw2,s[1]*" atom types")
     println(fw2,"")
 
-    
     line=readline(fn)
     println(fw,line)
-    
+    line=readline(fn)
+    println(fw,line)
+
     println(fw2, line*" xlo xhi")
 
     line=readline(fn)
