@@ -53,11 +53,29 @@ function ext_dump(file;Tstep=2000000,N=4152)
     println(fw,line)
 
     println(fw2,line*" atoms")
+
+    
     println(fw2,"13 atom types")
     println(fw2,"")
-    println(fw2, "0 30.828 xlo xhi")
-    println(fw2, "0 47.82 ylo yhi")
-    println(fw2, "0 30.828 zlo zhi")
+
+    line=readline(fn)
+    println(fw,line)
+    line=readline(fn)
+    println(fw,line)
+
+    println(fw2, line*" xlo xhi")
+
+    line=readline(fn)
+    println(fw,line)
+
+    println(fw2, line*" ylo yhi")
+
+    line=readline(fn)
+    println(fw,line)
+
+    println(fw2, line*" zlo zhi")
+
+    
     println(fw2,"")
     println(fw2,"Masses")
 
