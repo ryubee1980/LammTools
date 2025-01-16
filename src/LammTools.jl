@@ -120,6 +120,7 @@ function ext_dump(file,datafile;Tstep=0)
 
 
     close(fn)
+    close(fn2)
     close(fw)
     close(fw2)
     
