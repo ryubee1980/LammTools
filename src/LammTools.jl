@@ -16,18 +16,13 @@ function ext_dump(file,datafile;Tstep=2000000)
         lamver=lamver*" "*s[i]
     end
 
-    println(fw2,lamver)
-
-    for _ in 1:3
-        linedata=readline(fn2)
-    end
+    println(fw2,lamver) #header of the data file
 
 
 
     line=readline(fn)
     s=split(line)
     line2=readline(fn)
-
     if line=="ITEM: TIMESTEP"
         println(fw,line)
         println(fw, line2)
@@ -56,19 +51,19 @@ function ext_dump(file,datafile;Tstep=2000000)
     println(fw,Tstep)
 
 
-
-    #println(fw2,"LAMMPS data file via write_data, version 30 Nov 2020, timestep = $(Tstep)")
-    println(fw2,"")
-
-    line=readline(fn)
-    println(fw,line)
-    line=readline(fn)
-    println(fw,line)
-
-    println(fw2,line*" atoms")
+    for _ in 1:3
+        linedata=readline(fn2)
+    end
 
     
-    println(fw2,"13 atom types")
+
+    s=split(linedata)
+    Ntype=parse(Int,s[1])
+    #mass=Array{String}(undef,Ntype)
+    
+
+    
+    println(fw2,s[1]*" atom types")
     println(fw2,"")
 
     line=readline(fn)
@@ -94,7 +89,16 @@ function ext_dump(file,datafile;Tstep=2000000)
 
     println(fw2,"")
 
-    println(fw2,"1 12")
+    for _ in 1:7
+        linedata=readline(fn2)
+    end
+
+    for i in 1:Ntype
+        linedata=readline(fn2)
+        println(fw2,linedata)
+    end
+
+    #= println(fw2,"1 12")
     println(fw2,"2 1.008")
     println(fw2,"3 1.008")
     println(fw2,"4 16")
@@ -106,7 +110,7 @@ function ext_dump(file,datafile;Tstep=2000000)
     println(fw2,"10 12")
     println(fw2,"11 1.008")
     println(fw2,"12 16")
-    println(fw2,"13 1.008")
+    println(fw2,"13 1.008") =#
 
     println(fw2,"")
 
