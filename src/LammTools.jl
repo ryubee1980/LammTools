@@ -166,7 +166,7 @@ function ext_bonds(file;Tstep=0)
         println(fw2,line)
         line=readline(fn)
     end
-
+    println(fw2,line)
 
     close(fn)
     close(fw2)
