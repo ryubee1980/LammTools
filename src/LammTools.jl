@@ -2,12 +2,25 @@ module LammTools
 #Copyright (c) 2021 Ryuichi Okamoto <ryubee@gmail.com>
 #License: https://opensource.org/licenses/MIT
 
-function ext_dump(file;Tstep=2000000,N=4152)
+function ext_dump(file,datafile;Tstep=2000000)
     fn=open(file,"r")
+    fn2=open(datafile,"r")
     fw=open("ex_$(Tstep).dump", "w")
     fw2=open("ex_$(Tstep).data","w")
 
-    
+    linedata=readline(f2)
+    s=split(linedata)
+    s[end]="$(Tstep)"
+    lamver=s[1]
+    for i in 2:length(s)
+        lamver=lamver*" "*s[i]
+    end
+
+    println(fw2,lamver)
+
+    for _ in 1:3
+        linedata=readline(fn2)
+    end
 
 
 
@@ -44,7 +57,7 @@ function ext_dump(file;Tstep=2000000,N=4152)
 
 
 
-    println(fw2,"LAMMPS data file via write_data, version 30 Nov 2020, timestep = $(Tstep)")
+    #println(fw2,"LAMMPS data file via write_data, version 30 Nov 2020, timestep = $(Tstep)")
     println(fw2,"")
 
     line=readline(fn)
@@ -75,7 +88,7 @@ function ext_dump(file;Tstep=2000000,N=4152)
 
     println(fw2, line*" zlo zhi")
 
-    
+
     println(fw2,"")
     println(fw2,"Masses")
 
