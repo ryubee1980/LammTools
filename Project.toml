@@ -1,0 +1,13 @@
+name = "LammTools"
+uuid = "899fb778-3ea0-4be1-94b3-d1c6b71a7c93"
+authors = ["ryubee1980"]
+version = "1.0.0-DEV"
+
+[compat]
+julia = "1.6.7"
+
+[extras]
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+
+[targets]
+test = ["Test"]
