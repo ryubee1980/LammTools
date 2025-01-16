@@ -101,19 +101,6 @@ function ext_dump(file,datafile;Tstep=2000000)
         println(fw2,linedata)
     end
 
-    #= println(fw2,"1 12")
-    println(fw2,"2 1.008")
-    println(fw2,"3 1.008")
-    println(fw2,"4 16")
-    println(fw2,"5 16")
-    println(fw2,"6 88.90519999999999")
-    println(fw2,"7 91.224")
-    println(fw2,"8 1.008")
-    println(fw2,"9 16")
-    println(fw2,"10 12")
-    println(fw2,"11 1.008")
-    println(fw2,"12 16")
-    println(fw2,"13 1.008") =#
 
     println(fw2,"")
 
