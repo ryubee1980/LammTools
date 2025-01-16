@@ -126,14 +126,26 @@ function ext_dump(file,datafile;Tstep=2000000)
 end
 
 
-function ext_bonds(file;Tstep=30000,N=5717)
+function ext_bonds(file;Tstep=30000)
     fn=open(file,"r")
+
+    line="initial"
+ 
+    while line!="# Timestep $(Tstep) "
+        line=readline(fn)    
+    end
+
+    println("line $(Tstep) read")
+
+    for i in 1:2
+        line=readline(fn)
+    end
     
     fw2=open("bonds_$(Tstep).reaxc","w")
 
     println(fw2,"# Timestep $(Tstep)")
     println(fw2,"#")
-    println(fw2,"# Number of particles $(N)")
+    println(fw2,line)
     println(fw2,"#")
     println(fw2,"# Max number of bonds per atom 14 with coarse bond order cutoff 0.300")
     println(fw2, "# Particle connection table and bond orders")
@@ -141,12 +153,9 @@ function ext_bonds(file;Tstep=30000,N=5717)
     
     line="initial"
  
-    while line!="# Timestep $(Tstep) "
-        line=readline(fn)    
-    end
-    println("line $(Tstep) read")
+    
 
-    for i in 1:7
+    for i in 1:5
         line=readline(fn)
     end
 
