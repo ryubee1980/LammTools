@@ -38,7 +38,7 @@ function ext_dump(file,datafile;Tstep=0)
 #        line=readline(fn)
 #    end
     line2=readline(fn)
-    while line2!="$Tstep"
+    while line2!="$Tstep" && !eof(fn)
 	    line=readline(fn)
         while line!="ITEM: TIMESTEP"
             line=readline(fn)
