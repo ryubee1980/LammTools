@@ -23,103 +23,185 @@ function ext_dump(file,datafile;Tstep=0)
     line=readline(fn)
     s=split(line)
     line2=readline(fn)
-    if line=="ITEM: TIMESTEP"
-        println(fw,line)
-        println(fw, line2)
-    end
+    step_init=parse(Int,line2)
 
-    line=readline(fn)
-    while line!="ITEM: TIMESTEP"
+    if step_init==Tstep
+        println("timestep="*line2*" read!")
+
+        println(fw,"ITEM: TIMESTEP")
+        println(fw,Tstep)
+
+        line=readline(fn)
         println(fw,line)
         line=readline(fn)
-    end
+        println(fw,line)
+
+        println(fw2, line*" atoms")
+
+        for _ in 1:3
+            linedata=readline(fn2)
+        end
+
+
+        s=split(linedata)
+        Ntype=parse(Int,s[1])
     
-#    while !(line=="ITEM: TIMESTEP" && readline(fn)==Tstep)
-#        line=readline(fn)
-#    end
-    line2=readline(fn)
-    while line2!="$Tstep" 
-	    line=readline(fn)
+
+        println(fw2,s[1]*" atom types")
+        println(fw2,"")
+
+        line=readline(fn)
+        println(fw,line)
+        line=readline(fn)
+        println(fw,line)
+
+        println(fw2, line*" xlo xhi")
+
+        line=readline(fn)
+        println(fw,line)
+
+        println(fw2, line*" ylo yhi")
+
+        line=readline(fn)
+        println(fw,line)
+
+        println(fw2, line*" zlo zhi")
+
+
+        println(fw2,"")
+        println(fw2,"Masses")
+
+        println(fw2,"")
+
+        for _ in 1:7
+            linedata=readline(fn2)
+        end
+
+        for i in 1:Ntype
+            linedata=readline(fn2)
+            println(fw2,linedata)
+        end
+
+
+        println(fw2,"")
+
+        println(fw2,"Atoms # charge")
+
+        println(fw2,"")
+
+        line=readline(fn)
+        while line!="ITEM: TIMESTEP" && !eof(fn)
+            println(fw,line)
+            line=readline(fn)
+            s=split(line)
+            if length(s)==6 && s[1]!="ITEM:"
+                println(fw2,line)
+            end
+        end
+    else
+    
+
+        if line=="ITEM: TIMESTEP"
+            println(fw,line)
+            println(fw, line2)
+        end
+
+        
+
+        line=readline(fn)
         while line!="ITEM: TIMESTEP"
+            println(fw,line)
             line=readline(fn)
         end
+        
+    #    while !(line=="ITEM: TIMESTEP" && readline(fn)==Tstep)
+    #        line=readline(fn)
+    #    end
+        
         line2=readline(fn)
         
-    end
+        while line2!="$Tstep"
+            line=readline(fn)
+            while line!="ITEM: TIMESTEP"
+                line=readline(fn)
+            end
+            line2=readline(fn)
+            
+        end
 
-    println("timestep="*line2*" read!")
+        println("timestep="*line2*" read!")
 
-    println(fw,"ITEM: TIMESTEP")
-    println(fw,Tstep)
+        println(fw,"ITEM: TIMESTEP")
+        println(fw,Tstep)
 
-    line=readline(fn)
-    println(fw,line)
-    line=readline(fn)
-    println(fw,line)
-
-    println(fw2, line*" atoms")
-
-    for _ in 1:3
-        linedata=readline(fn2)
-    end
-
-
-    s=split(linedata)
-    Ntype=parse(Int,s[1])
-    
-
-    println(fw2,s[1]*" atom types")
-    println(fw2,"")
-
-    line=readline(fn)
-    println(fw,line)
-    line=readline(fn)
-    println(fw,line)
-
-    println(fw2, line*" xlo xhi")
-
-    line=readline(fn)
-    println(fw,line)
-
-    println(fw2, line*" ylo yhi")
-
-    line=readline(fn)
-    println(fw,line)
-
-    println(fw2, line*" zlo zhi")
-
-
-    println(fw2,"")
-    println(fw2,"Masses")
-
-    println(fw2,"")
-
-    for _ in 1:7
-        linedata=readline(fn2)
-    end
-
-    for i in 1:Ntype
-        linedata=readline(fn2)
-        println(fw2,linedata)
-    end
-
-
-    println(fw2,"")
-
-    println(fw2,"Atoms # charge")
-
-    println(fw2,"")
-
-    line=readline(fn)
-    while line!="ITEM: TIMESTEP" && !eof(fn)
+        line=readline(fn)
         println(fw,line)
         line=readline(fn)
-        s=split(line)
-        if length(s)==6 && s[1]!="ITEM:"
-            println(fw2,line)
-        end
-    end    
+        println(fw,line)
 
+        println(fw2, line*" atoms")
+
+        for _ in 1:3
+            linedata=readline(fn2)
+        end
+
+
+        s=split(linedata)
+        Ntype=parse(Int,s[1])
+        
+
+        println(fw2,s[1]*" atom types")
+        println(fw2,"")
+
+        line=readline(fn)
+        println(fw,line)
+        line=readline(fn)
+        println(fw,line)
+
+        println(fw2, line*" xlo xhi")
+
+        line=readline(fn)
+        println(fw,line)
+
+        println(fw2, line*" ylo yhi")
+
+        line=readline(fn)
+        println(fw,line)
+
+        println(fw2, line*" zlo zhi")
+
+
+        println(fw2,"")
+        println(fw2,"Masses")
+
+        println(fw2,"")
+
+        for _ in 1:7
+            linedata=readline(fn2)
+        end
+
+        for i in 1:Ntype
+            linedata=readline(fn2)
+            println(fw2,linedata)
+        end
+
+
+        println(fw2,"")
+
+        println(fw2,"Atoms # charge")
+
+        println(fw2,"")
+
+        line=readline(fn)
+        while line!="ITEM: TIMESTEP" && !eof(fn)
+            println(fw,line)
+            line=readline(fn)
+            s=split(line)
+            if length(s)==6 && s[1]!="ITEM:"
+                println(fw2,line)
+            end
+        end    
+    end
 
     close(fn)
     close(fn2)
