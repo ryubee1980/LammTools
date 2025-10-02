@@ -255,4 +255,48 @@ function ext_bonds(file;Tstep=0)
     
 end
 
+function read_data_AtomsCharge(file)
+    fn=open(file,"r")
+    for _ in 1:3
+        line=readline(fn)
+    end
+    s=split(line)
+    Natom=parse(Int,s[1])
+
+    line=readline(fn)
+    s=split(line)
+    atypes=parse(Int,s[1])
+
+    readline(fn)
+
+    box=Array{Float64}(undef,3,2)
+    for i in 1:3
+        line=readline(fn)
+        s=split(line)
+        box[i,1]=parse(Float64,s[1])
+        box[i,2]=parse(Float64,s[2])
+    end
+
+    for _ in 1:(3+atypes+3)
+        readline(fn)
+    end
+
+    types=Array{Int64}(undef,Natom)
+    xyz=Array{Float64}(undef, Natom,3)
+    charge=Array{Float64}(undef, Natom,3)
+
+    for i in 1:Natom
+        line=readline(fn)
+        s=split(line)
+        num=parse(Int,s[1])
+        types[num]=parse(Int,s[2])
+        xyz[num,1]=parse(Float64, s[4])
+        xyz[num,2]=parse(Float64, s[5])
+        xyz[num,3]=parse(Float64, s[6])
+        charge[num]=parse(Float64, s[3])
+    end
+    Natom,atypes,box, types, charge, xyz
+end
+
+
 end
