@@ -216,8 +216,9 @@ function ext_bonds(file;Tstep=0)
 
     line="initial"
  
-    while line!="# Timestep $(Tstep) "
+    while line!="# Timestep $(Tstep)"
         line=readline(fn)    
+        #println("data at $(Tstep) found")
     end
 
     println("line $(Tstep) read")
