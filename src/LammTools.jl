@@ -210,6 +210,126 @@ function ext_dump(file,datafile;Tstep=0)
     
 end
 
+function ext_dump_seq(file,datafile,steps)
+    fn=open(file,"r")
+    
+
+    line=readline(fn)
+    s=split(line)
+    line2=readline(fn)
+    step_init=parse(Int,line2)
+
+
+    for Tstep in steps
+        fw=open("ex_$(Tstep).dump", "w")
+        fw2=open("ex_$(Tstep).data","w")
+        fn2=open(datafile,"r")
+
+        linedata=readline(fn2)
+        s=split(linedata)
+        s[end]="$(Tstep)"
+        lamver=s[1]
+        for i in 2:length(s)
+            lamver=lamver*" "*s[i]
+        end
+
+        println(fw2,lamver) #header of the data file
+        println(fw2,"")
+
+
+        while line2!="$Tstep"
+            line=readline(fn)
+            while line!="ITEM: TIMESTEP"
+                line=readline(fn)
+            end
+            line2=readline(fn)
+            
+        end
+
+        println("timestep="*line2*" read!")
+
+        println(fw,"ITEM: TIMESTEP")
+        println(fw,Tstep)
+
+        line=readline(fn)
+        println(fw,line)
+        line=readline(fn)
+        println(fw,line)
+
+        println(fw2, line*" atoms")
+
+        for _ in 1:3
+            linedata=readline(fn2)
+        end
+
+
+        s=split(linedata)
+        Ntype=parse(Int,s[1])
+        
+
+        println(fw2,s[1]*" atom types")
+        println(fw2,"")
+
+        line=readline(fn)
+        println(fw,line)
+        line=readline(fn)
+        println(fw,line)
+
+        println(fw2, line*" xlo xhi")
+
+        line=readline(fn)
+        println(fw,line)
+
+        println(fw2, line*" ylo yhi")
+
+        line=readline(fn)
+        println(fw,line)
+
+        println(fw2, line*" zlo zhi")
+
+
+        println(fw2,"")
+        println(fw2,"Masses")
+
+        println(fw2,"")
+
+        for _ in 1:7
+            linedata=readline(fn2)
+        end
+
+        for i in 1:Ntype
+            linedata=readline(fn2)
+            println(fw2,linedata)
+        end
+
+
+        println(fw2,"")
+
+        println(fw2,"Atoms # charge")
+
+        println(fw2,"")
+
+        line=readline(fn)
+        while line!="ITEM: TIMESTEP" && !eof(fn)
+            println(fw,line)
+            line=readline(fn)
+            s=split(line)
+            if length(s)==6 && s[1]!="ITEM:"
+                println(fw2,line)
+            end
+        end    
+
+        close(fw)
+        close(fw2)
+        close(fn2)
+    end
+
+    close(fn)
+    
+    
+    
+end
+
 
 function ext_bonds(file;Tstep=0)
     fn=open(file,"r")
