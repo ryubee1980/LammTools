@@ -210,7 +210,7 @@ function ext_dump(file,datafile;Tstep=0)
     
 end
 
-function ext_dump_seq(file,datafile,steps)
+function ext_dump_seq(file,datafile,steps;dir="./")
     fn=open(file,"r")
     
 
