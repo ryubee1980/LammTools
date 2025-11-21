@@ -211,6 +211,7 @@ function ext_dump(file,datafile;Tstep=0)
 end
 
 function ext_dump_seq(file,datafile,steps;dir="./")
+    isdir(dir) || mkdir(dir)
     fn=open(file,"r")
     
 
@@ -221,8 +222,8 @@ function ext_dump_seq(file,datafile,steps;dir="./")
 
 
     for Tstep in steps
-        fw=open("ex_$(Tstep).dump", "w")
-        fw2=open("ex_$(Tstep).data","w")
+        fw=open(dir*"/ex_$(Tstep).dump", "w")
+        fw2=open(dir*"/ex_$(Tstep).data","w")
         fn2=open(datafile,"r")
 
         linedata=readline(fn2)
