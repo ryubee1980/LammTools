@@ -350,7 +350,7 @@ function ext_bonds(file;Tstep=0)
     
     fw2=open("bonds_$(Tstep).reaxc","w")
 
-    println(fw2,"# Timestep $(Tstep)")
+    println(fw2,"# Timestep $(Tstep) ")
     println(fw2,"#")
     println(fw2,line)
     println(fw2,"#")
